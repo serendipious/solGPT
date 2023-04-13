@@ -1,7 +1,7 @@
 import {useFullSize} from 'hooks/useFullSize'
 import {solNative} from 'lib/SolNative'
 import {observer} from 'mobx-react-lite'
-import React, {FC, useEffect, useRef} from 'react'
+import React, {FC, forwardRef, useEffect, useRef} from 'react'
 import {
   FlatList,
   Text,
@@ -23,26 +23,12 @@ interface WrappedInputProps extends TextInputProps {
   focused: boolean
 }
 
-const WrappedInput: FC<WrappedInputProps> = ({focused, value, ...props}) => {
-  const ref = useRef<TextInput | null>(null)
-
-  useEffect(() => {
-    if (focused) {
-      ref.current?.focus()
-    }
-  }, [focused])
-
-  return (
-    <TextInput ref={ref} selectTextOnFocus={false} value={value} {...props} />
-  )
-}
-
 export const ScratchpadWidget: FC<Props> = observer(({style}) => {
-  const store = useStore()
+  let store = useStore()
   useFullSize()
-  const selectedIndex = store.ui.selectedIndex
-  const listRef = useRef<FlatList | null>(null)
-  const colorScheme = useColorScheme()
+  let selectedIndex = store.ui.selectedIndex
+  let listRef = useRef<FlatList | null>(null)
+  let inputRef = useRef<TextInput | null>(null)
 
   useEffect(() => {
     solNative.turnOffVerticalArrowsListeners()
@@ -63,7 +49,8 @@ export const ScratchpadWidget: FC<Props> = observer(({style}) => {
   return (
     <View style={style} className="flex-1 p-4">
       <View className="flex-1 rounded-lg border border-lightBorder dark:border-darkBorder p-2 bg-white dark:bg-darker">
-        <WrappedInput
+        <TextInput
+          ref={inputRef}
           autoFocus
           value={store.ui.note}
           onChangeText={store.ui.setNote}
@@ -72,7 +59,6 @@ export const ScratchpadWidget: FC<Props> = observer(({style}) => {
           placeholderTextColor={colors.neutral[400]}
           placeholder="Write something..."
           className="flex-1"
-          selectionColor={colorScheme === 'dark' ? 'white' : 'black'}
           multiline
           spellCheck
         />
