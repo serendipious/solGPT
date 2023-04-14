@@ -1,19 +1,18 @@
 import {Assets} from 'assets'
+import clsx from 'clsx'
 import {useFullSize} from 'hooks/useFullSize'
 import {solNative} from 'lib/SolNative'
 import {observer} from 'mobx-react-lite'
 import React, {FC, useEffect} from 'react'
 import {Image, Text, TextInput, View, ViewStyle} from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
+import colors from 'tailwindcss/colors'
 
 interface Props {
   style?: ViewStyle
 }
 
 export const GifsWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   const store = useStore()
   useFullSize()
 
@@ -29,7 +28,7 @@ export const GifsWidget: FC<Props> = observer(({style}) => {
   }, [store.ui.query])
 
   return (
-    <View style={tw.style(`flex-1`, style)}>
+    <View style={style} className="flex-1">
       <View className="h-10 pt-3 px-3 justify-center flex-row">
         <TextInput
           autoFocus
@@ -38,7 +37,7 @@ export const GifsWidget: FC<Props> = observer(({style}) => {
           value={store.ui.query}
           onChangeText={store.ui.setQuery}
           selectionColor={solNative.accentColor}
-          placeholderTextColor={tw.color('dark:text-gray-400 text-gray-500')}
+          placeholderTextColor={colors.neutral[500]}
           placeholder="Search gifs..."
           className="flex-1"
         />
@@ -52,13 +51,13 @@ export const GifsWidget: FC<Props> = observer(({style}) => {
         {store.ui.gifs.map((gif, index) => {
           return (
             <View
-              style={tw.style(`p-2 rounded border border-transparent`, {
+              className={clsx(`p-2 rounded border border-transparent`, {
                 'bg-accent bg-opacity-50 dark:bg-opacity-40 border-accentDim':
                   index === store.ui.selectedIndex,
               })}>
               <Image
                 source={{uri: gif.images.downsized.url}}
-                style={tw.style(`w-31 h-31 rounded`)}
+                className="w-31 h-31 rounded"
               />
             </View>
           )

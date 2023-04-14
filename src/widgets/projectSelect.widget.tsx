@@ -1,11 +1,10 @@
+import clsx from 'clsx'
 import {StyledFlatList} from 'components/StyledFlatList'
 import {DateTime} from 'luxon'
 import {observer} from 'mobx-react-lite'
 import React, {FC} from 'react'
 import {Text, TouchableOpacity, View, ViewStyle} from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
 
 const DAY_WEEK_TO_TEXT = {
   0: 'Mo',
@@ -22,7 +21,6 @@ interface Props {
 }
 
 export const ProjectSelectWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   const store = useStore()
 
   const selectedIndex = store.ui.selectedIndex
@@ -39,7 +37,7 @@ export const ProjectSelectWidget: FC<Props> = observer(({style}) => {
   }
 
   return (
-    <View style={tw.style(`flex-1`, style)}>
+    <View style={style} className="flex-1">
       <TouchableOpacity
         className="border-b border-lightBorder dark:border-darkBorder p-3"
         onPress={() => {
@@ -115,7 +113,7 @@ export const ProjectSelectWidget: FC<Props> = observer(({style}) => {
 
           return (
             <View
-              style={tw.style(
+              className={clsx(
                 `px-3 py-2 rounded w-full border border-transparent`,
                 {
                   'bg-accent bg-opacity-50 dark:bg-gray-500 dark:bg-opacity-20 border-buttonBorder dark:border-darkBorder':

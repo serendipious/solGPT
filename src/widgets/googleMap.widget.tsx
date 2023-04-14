@@ -4,15 +4,12 @@ import React, {FC, useEffect} from 'react'
 import {View, ViewStyle} from 'react-native'
 import {WebView} from 'react-native-webview'
 import {useStore} from 'store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
 
 interface Props {
   style?: ViewStyle
 }
 
 export const GoogleMapWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   const store = useStore()
 
   useEffect(() => {

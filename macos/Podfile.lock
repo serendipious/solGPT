@@ -486,13 +486,13 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-macos/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  boost: 613e39eac4239cc72b15421247b5ab05361266a2
-  DoubleConversion: ed15e075aa758ac0e4c1f8b830bd4e4d40d669e8
+  boost: 8fa3cd00fa17ef6c3221e5fd283fa93e81d23017
+  DoubleConversion: acaf5db79676d2e9119015819153f0f99191de12
   FBLazyVector: 3dd860fc238649dda4cf6059c741346fffb88d75
   FBReactNativeSpec: 80e88bc76c79f4a5f528e77dff3d6d0e408b0d45
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 20113a0d46931b6f096cf8302c68691d75a456ff
+  glog: 6df0a3d6e2750a50609471fd1a01fd2948d405b5
   HotKey: ad59450195936c10992438c4210f673de5aee43e
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   RCT-Folly: bf7b4921a91932051ebf1c5c2d297154b1fa3c8c

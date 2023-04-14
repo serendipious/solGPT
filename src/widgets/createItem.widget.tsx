@@ -1,4 +1,5 @@
 import {Assets, Icons} from 'assets'
+import clsx from 'clsx'
 import {Input} from 'components/Input'
 import {MySwitch} from 'components/MySwitch'
 import {SolButton} from 'components/SolButton'
@@ -8,8 +9,6 @@ import React, {FC, useEffect, useState} from 'react'
 import {Image, Text, TouchableOpacity, View, ViewStyle} from 'react-native'
 import {useStore} from 'store'
 import {ItemType} from 'stores/ui.store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
 
 interface Props {
   style?: ViewStyle
@@ -34,7 +33,6 @@ export const USER_COLOR_PALETTE = [
 ]
 
 export const CreateItemWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   const store = useStore()
   const [icon, setIcon] = useState('Apple')
   const [color, setColor] = useState(USER_COLOR_PALETTE[0])
@@ -75,13 +73,13 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
         }}>
         <Image
           source={Assets.ChevronLeft}
-          style={tw`dark:tint-white h-5 w-5`}
+          className="dark:tint-white h-5 w-5"
         />
         <Text>Create Shortcut</Text>
       </TouchableOpacity>
       {!iconSelectorOpen && (
         <View
-          style={tw.style(`flex-1`, {
+          className={clsx(`flex-1`, {
             'pt-10': isApplescript,
             'justify-center': !isApplescript,
           })}>
@@ -90,7 +88,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
             <View className="flex-[1.5]">
               <TouchableOpacity
                 onPress={() => setIconSelectorOpen(!iconSelectorOpen)}
-                style={tw.style(
+                className={clsx(
                   `h-6 w-6 justify-center items-center border border-lightBorder dark:border-darkBorder rounded`,
                   {
                     'bg-blue-500': iconSelectorOpen,
@@ -100,7 +98,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
                   <Image
                     // @ts-ignore
                     source={Icons[icon]}
-                    style={tw.style(`h-4 w-4`, {
+                    className={clsx(`h-4 w-4`, {
                       tintColor: color,
                     })}
                   />
@@ -132,7 +130,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
             </View>
           </View>
           <View
-            style={tw.style(`flex-row py-2`, {
+            className={clsx(`flex-row py-2`, {
               'items-start': isApplescript,
               'items-center': !isApplescript,
             })}>
@@ -144,7 +142,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
                 placeholder="Link or script..."
                 bordered
                 multiline={isApplescript}
-                style={tw.style(`w-64`, {
+                className={clsx(`w-64`, {
                   'h-48': isApplescript,
                 })}
                 value={text}
@@ -155,14 +153,14 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
         </View>
       )}
       {iconSelectorOpen && (
-        <View style={tw.style(`flex-1 px-10 items-center justify-center`)}>
+        <View className="flex-1 px-10 items-center justify-center">
           <View className="w-full border-lightBorder dark:border-darkBorder flex-row px-2">
             {USER_COLOR_PALETTE.map(c => (
               <TouchableOpacity
                 onPress={() => {
                   setColor(c)
                 }}
-                style={tw.style(
+                className={clsx(
                   'p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700',
                   {
                     'bg-gray-100 dark:bg-gray-700': c === 'blah',
@@ -170,7 +168,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
                 )}
                 key={c}>
                 <View
-                  style={tw.style(`w-4 h-4 rounded-full`, {
+                  className={clsx(`w-4 h-4 rounded-full`, {
                     backgroundColor: c,
                   })}
                 />
@@ -189,7 +187,7 @@ export const CreateItemWidget: FC<Props> = observer(({style}) => {
                   className="p-2">
                   <Image
                     source={icon}
-                    style={tw.style(`h-6 w-6`, {
+                    className={clsx(`h-6 w-6`, {
                       tintColor: color,
                     })}
                     resizeMode="contain"

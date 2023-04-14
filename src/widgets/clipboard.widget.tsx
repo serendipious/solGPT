@@ -8,8 +8,7 @@ import {observer} from 'mobx-react-lite'
 import React, {FC, useEffect, useRef} from 'react'
 import {FlatList, Text, TextInput, View, ViewStyle} from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
+import colors from 'tailwindcss/colors'
 
 interface Props {
   style?: ViewStyle
@@ -17,7 +16,6 @@ interface Props {
 }
 
 export const ClipboardWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   useFullSize()
 
   const store = useStore()
@@ -43,9 +41,7 @@ export const ClipboardWidget: FC<Props> = observer(({style}) => {
         value={store.ui.query}
         onChangeText={store.ui.setQuery}
         selectionColor={solNative.accentColor}
-        placeholderTextColor={tw.color(
-          'dark:text-neutral-400 text-neutral-500',
-        )}
+        placeholderTextColor={colors.neutral[500]}
         className="text-xl my-5 mx-4"
         placeholder="Search clipboard history..."
       />

@@ -4,19 +4,16 @@ import {observer} from 'mobx-react-lite'
 import React, {FC} from 'react'
 import {Text, TouchableOpacity, View, ViewStyle} from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
-import {useDeviceContext} from 'twrnc'
 
 interface Props {
   style?: ViewStyle
 }
 
 export const ProjectCreationWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   const store = useStore()
 
   return (
-    <View style={tw.style(`flex-1`, style)}>
+    <View style={style} className="flex-1">
       <TouchableOpacity
         className="border-b border-lightBorder dark:border-darkBorder p-3"
         onPress={() => {

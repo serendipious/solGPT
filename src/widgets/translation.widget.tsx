@@ -14,10 +14,8 @@ import {
   ViewStyle,
 } from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
 import colors from 'tailwindcss/colors'
 import customColors from '../colors'
-import {useDeviceContext} from 'twrnc'
 
 interface Props {
   style?: StyleProp<ViewStyle>
@@ -25,7 +23,6 @@ interface Props {
 }
 
 export const TranslationWidget: FC<Props> = observer(({style}) => {
-  useDeviceContext(tw)
   useFullSize()
   const store = useStore()
   const colorScheme = Appearance.getColorScheme()

@@ -41,7 +41,6 @@
     "react-native-macos": "0.71.2",
     "react-native-webview": "^11.23.1",
     "react-native-windows": "0.67.7",
-    "twrnc": "^3.4.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
