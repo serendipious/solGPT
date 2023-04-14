@@ -1,5 +1,5 @@
 import {solNative} from 'lib/SolNative'
-import {create} from 'twrnc'
+
 const config = require('../tailwind.config.js')
 
 function hexToRgb(hex: string) {
@@ -20,7 +20,3 @@ const accentBg = `rgba(${accentRbg?.r},${accentRbg?.g},${accentRbg?.b}, 0.4)`
 
 config.theme.extend.colors.accentDim = accentDim
 config.theme.extend.colors.accentBg = accentBg
-
-const tw = create(config)
-
-export default tw

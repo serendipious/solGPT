@@ -1,14 +1,14 @@
+import {solNative} from 'lib/SolNative'
 import {observer} from 'mobx-react-lite'
 import React, {useEffect, useRef} from 'react'
 import {Animated, useColorScheme} from 'react-native'
 import {useStore} from 'store'
-import tw from 'tailwind'
 
 export const LoadingBar = observer(() => {
   const colorScheme = useColorScheme()
   const store = useStore()
   const animatedBorderRef = useRef(new Animated.Value(0))
-  const accentColor = tw.color('text-accent')!
+  const accentColor = solNative.accentColor
 
   useEffect(() => {
     Animated.timing(animatedBorderRef.current, {
